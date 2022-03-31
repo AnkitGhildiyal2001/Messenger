@@ -13,3 +13,22 @@ app.listen(process.env.PORT || 3000,function(){  // --> app will work both on lo
 app.get("/",function(req,res){
   res.sendFile(__dirname+"/index.html");
 });
+
+app.get("/login.html",function(req,res){
+  res.sendFile(__dirname+"/login.html");
+});
+
+app.post("/login.html",function(req,res){
+    var email = req.body.email;
+    var pass = req.body.password;
+});
+
+app.get("/signup.html",function(req,res){
+  res.sendFile(__dirname+"/signup.html");
+});
+
+app.post("/login.html",function(req,res){
+    var email = req.body.email;
+    var pass = req.body.password;
+    res.send("WELCOME your email is " + email + " & password is " + pass);
+});
