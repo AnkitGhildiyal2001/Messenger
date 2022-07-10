@@ -15,11 +15,11 @@ body{
   font-size: 50px;
   font-family: serif;
   align-self: center;
-  padding: 30px;
+  padding: 10px;
 }
 
 .item{
-  padding: 70px;
+  padding: 10px;
   background-color: #e9f5f9;
   font-size: 40px;
   border: 2px solid ;
