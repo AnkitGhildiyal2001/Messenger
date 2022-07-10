@@ -39,6 +39,3 @@ app.get("/",function(req,res){
     storeItems: items
   });
 });
-
-
-console.log(items);
