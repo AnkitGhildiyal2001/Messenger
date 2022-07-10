@@ -12,7 +12,7 @@ body{
 #top{
   color: #1a6985;
   opacity: 0.8;
-  font-size: 30px;
+  font-size: 20px;
   font-family: serif;
   align-self: center;
   padding: 10px;
@@ -21,7 +21,7 @@ body{
 .item{
   padding: 10px;
   background-color: #e9f5f9;
-  font-size: 10px;
+  font-size: 20px;
   border: 2px solid ;
   border-radius: 30px;
   margin: 5px;
