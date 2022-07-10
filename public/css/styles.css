@@ -9,6 +9,10 @@ body{
   font-family: serif;
 }
 
+.aicon{
+  width: 50%;
+}
+
 #top{
   color: #1a6985;
   opacity: 0.8;
@@ -28,6 +32,13 @@ body{
   margin-top: 20px;
 }
 
-.aicon{
-  width: 50%;
+.tabname{
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tabdes{
+  padding: 10px;
+  font-size: 15px;
 }
