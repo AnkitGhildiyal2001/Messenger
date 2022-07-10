@@ -32,37 +32,37 @@
   <br>
   <br>
   <br>
+  <form class="" action="/" method="post">
 
-  <div class="col">
+    <div class="col">
 
-
-
-    <%for(var i=0;i<storeItems.length;i++){%>
-    <!-- item -->
-    <div class="row item">
-      <div class="col">
-        <div class="row tabname">
-          <div class="col-12"><%= storeItems[i].name %></div>
-        </div>
-        <div class="row tabdes">
-          <div class="col-8"><%= storeItems[i].description %></div>
-          <div class="col-4">MRP: Rs. <%= storeItems[i].mrp %></div>
-        </div>
-        <div class="row tabbuy">
-          <div class="col-2"></div>
-          <div class="col-2"><button type="button" class="btn btn-primary incbtn"><i class="fa-solid fa-plus"></i></button></div>
-          <div class="col-1"></div>
-          <div class="col-2 iquant"><%= storeItems[i].quantity %></div>
-          <div class="col-1"></div>
-          <div class="col-2"><button type="button" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button></div>
-          <div class="col-2"></div>
+      <%for(var i=0;i<storeItems.length;i++){%>
+      <!-- item -->
+      <div class="row item">
+        <div class="col">
+          <div class="row tabname">
+            <div class="col-12"><%= storeItems[i].name %></div>
+          </div>
+          <div class="row tabdes">
+            <div class="col-8"><%= storeItems[i].description %></div>
+            <div class="col-4">MRP: Rs. <%= storeItems[i].mrp %></div>
+          </div>
+          <div class="row tabbuy">
+            <div class="col-2"></div>
+            <div class="col-2"><button class="btn btn-primary" type="submit" name="inc" value=<%=i%>><i class="fa-solid fa-plus"></i></button></div>
+            <div class="col-1"></div>
+            <div class="col-2 iquant"><%= storeItems[i].quantity %></div>
+            <div class="col-1"></div>
+            <div class="col-2"><button class="btn btn-primary" type="submit" name="dec" value=<%=i%>><i class="fa-solid fa-minus"></i></button></div>
+            <div class="col-2"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <%}%>
+      <%}%>
 
   </div>
 
+</form>
 
   <br>
   <br>
@@ -70,8 +70,9 @@
 
 
   <div class="navbar navbar-expand-sm bg-light navbar-dark fixed-bottom justify-content-center">
-    <button type="button" class="btn btn-primary btn-block title" style="color:white;" id="top">Pay 500</button>
+    <button type="button" class="btn btn-primary btn-block title" style="color:white;" id="top">Pay <%=total%></button>
   </div>
+
 
 
 </body>

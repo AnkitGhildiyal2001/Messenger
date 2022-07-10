@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
-const store = require(__dirname+"/functionality.js");
+const store = require(__dirname + "/functionality.js");
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -15,13 +15,15 @@ app.listen(process.env.PORT || 3000, function() { // --> app will work both on l
 });
 
 var itemsStore = [
-  ["test name", "test description", 32],
-  ["test name", "test description", 52],
-  ["test name", "test description", 302],
-  ["test name", "test description", 78]
+  ["test name", "test description", 32.72],
+  ["test name", "test description", 52.03],
+  ["test name", "test description", 302.56],
+  ["test name", "test description", 78.00]
 ];
 
 var items = [];
+
+var total = 0;
 
 function getItem(name, description, mrp) {
   this.name = name;
@@ -30,12 +32,41 @@ function getItem(name, description, mrp) {
   this.mrp = mrp;
 }
 
-for(var i=0;i<itemsStore.length;i++){
-  items.push(new getItem(itemsStore[i][0],itemsStore[i][1],itemsStore[i][2]));
+for (var i = 0; i < itemsStore.length; i++) {
+  items.push(new getItem(itemsStore[i][0], itemsStore[i][1], itemsStore[i][2]));
 }
 
-app.get("/",function(req,res){
-  res.render('index',{
-    storeItems: items
+app.get("/", function(req, res) {
+  res.render('index', {
+    storeItems: items,
+    total: total
   });
 });
+
+app.post("/", function(req, res) {
+  var body = req.body;
+
+  if('inc' in body){
+    inc(Number(body.inc));
+  }
+
+  if('dec' in body){
+    dec(Number(body.dec));
+  }
+
+  res.redirect("/");
+});
+
+function inc(i){
+  if(items[i].quantity<5){
+    items[i].quantity++;
+    total+=items[i].mrp;
+  }
+}
+
+function dec(i){
+  if(items[i].quantity>0){
+    items[i].quantity--;
+    total-=items[i].mrp;
+  }
+}
