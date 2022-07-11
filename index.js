@@ -67,7 +67,7 @@ app.get("/", function(req, res) {
 
   res.render('index', {
     storeItems: items,
-    total: total
+    total: Math.round(total)
   });
 });
 
