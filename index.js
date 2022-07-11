@@ -27,8 +27,9 @@ var itemsStore = [];
 // request
 
 var items = [];
+var address = {};
 
-function getpdate(){
+function getpdate() {
   axios
     .post('https://anonympy.service-now.com/api/snc/alexis_pharmacy/update', {
 
@@ -36,11 +37,11 @@ function getpdate(){
     .then(res => {
       console.log(`statusCode: ${res.status}`);
       itemsStore = res.data.results;
-      console.log(itemsStore);
+      //console.log(itemsStore);
       for (var i = 0; i < itemsStore.length; i++) {
         items.push(new getItem(itemsStore[i].name, itemsStore[i].description, Number(itemsStore[i].mrp)));
       }
-      console.log(items);
+      //console.log(items);
     })
     .catch(error => {
       console.error(error);
@@ -61,41 +62,81 @@ function getItem(name, description, mrp) {
 }
 
 
-  getpdate();
+getpdate();
 
 
 app.get("/", function(req, res) {
 
   res.render('index', {
     storeItems: items,
-    total: (Math.round(total*100))/100
+    total: (Math.round(total * 100)) / 100
   });
 });
 
 app.post("/", function(req, res) {
   var body = req.body;
 
-  if('inc' in body){
+  console.log(body);
+
+  if ('inc' in body) {
     inc(Number(body.inc));
   }
 
-  if('dec' in body){
+  if ('dec' in body) {
     dec(Number(body.dec));
+  }
+
+  if ('address' in body) {
+    res.redirect("/address");
   }
 
   res.redirect("/");
 });
 
-function inc(i){
-  if(items[i].quantity<5){
+
+
+
+app.get("/address", function(req, res) {
+
+  res.render("address", {
+    items: items,
+    total: (Math.round(total * 100)) / 100,
+    num: getN()
+  });
+
+});
+
+
+app.post("/address", function(req, res) {
+  var body = req.body;
+
+  console.log(body);
+
+  res.redirect("/");
+});
+
+
+
+function inc(i) {
+  if (items[i].quantity < 5 && items[i].quantity < itemsStore[i].quantity) {
     items[i].quantity++;
-    total+=items[i].mrp;
+    total += items[i].mrp;
   }
 }
 
-function dec(i){
-  if(items[i].quantity>0){
+function dec(i) {
+  if (items[i].quantity > 0) {
     items[i].quantity--;
-    total-=items[i].mrp;
+    total -= items[i].mrp;
   }
+}
+
+function getN() {
+  var n = 0;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].quantity > 0) {
+      n++;
+    }
+  }
+  return n;
 }

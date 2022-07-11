@@ -32,19 +32,7 @@ body{
   margin-top: 20px;
 }
 
-.tabname{
-  padding: 10px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tabdes{
-  padding: 10px;
-  font-size: 15px;
-}
-
-.tabbuy{
-  padding: 15px;
-  font-size: 15px;
-  font-weight: bold;
+.address{
+  padding: 30px;
+  padding-top: 50px;
 }
