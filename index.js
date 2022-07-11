@@ -35,7 +35,7 @@ function getpdate() {
 
     })
     .then(res => {
-      console.log(`statusCode: ${res.status}`);
+      // console.log(`statusCode: ${res.status}`);
       itemsStore = res.data.results;
       //console.log(itemsStore);
       for (var i = 0; i < itemsStore.length; i++) {
@@ -75,8 +75,6 @@ app.get("/", function(req, res) {
 
 app.post("/", function(req, res) {
   var body = req.body;
-
-  console.log(body);
 
   if ('inc' in body) {
     inc(Number(body.inc));
