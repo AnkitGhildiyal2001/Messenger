@@ -43,8 +43,7 @@ function getpdate() {
     });
 }
 
-
-
+getpdate();
 
 
 var total = 0;
@@ -57,11 +56,10 @@ function getItem(name, description, mrp) {
 }
 
 
-getpdate();
-
 
 app.get("/", function(req, res) {
-
+  getpdate();
+  console.log("start");
   res.render('index', {
     storeItems: items,
     total: (Math.round(total * 100)) / 100
