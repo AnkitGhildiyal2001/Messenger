@@ -37,7 +37,7 @@ function getpdate(){
       console.log(`statusCode: ${res.status}`);
       itemsStore = res.data.result;
       for (var i = 0; i < itemsStore.length; i++) {
-        items.push(new getItem(itemsStore[i].name, itemsStore[i].description, itemsStore[i].mrp));
+        items.push(new getItem(itemsStore[i].name, itemsStore[i].description, Number(itemsStore[i].mrp)));
       }
       console.log(items);
     })
