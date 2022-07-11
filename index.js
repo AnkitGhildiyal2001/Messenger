@@ -12,17 +12,6 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public")); // public is the name of the folder which we will keep as a static folder
 
 
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
-// other app.use() options ...
-app.use(expressCspHeader({
-    policies: {
-        'default-src': [expressCspHeader.NONE],
-        'img-src': [expressCspHeader.SELF],
-    }
-}));
-
-
-
 app.listen(process.env.PORT || 3000, function() { // --> app will work both on local system and heroku servers
   console.log("Server is running on port 3000");
 });
