@@ -17,12 +17,7 @@ app.listen(process.env.PORT || 3000, function() { // --> app will work both on l
 
 var itemsStore = [];
 
-// var itemsStore = [
-//   ["test name", "test description", 32.72],
-//   ["test name", "test description", 52.03],
-//   ["test name", "test description", 302.56],
-//   ["test name", "test description", 78.00]
-// ];
+
 
 // request
 
@@ -35,7 +30,7 @@ function getpdate() {
 
     })
     .then(res => {
-      // console.log(`statusCode: ${res.status}`);
+      console.log(`statusCode: ${res.status}`);
       itemsStore = res.data.results;
       //console.log(itemsStore);
       for (var i = 0; i < itemsStore.length; i++) {
@@ -86,9 +81,11 @@ app.post("/", function(req, res) {
 
   if ('address' in body) {
     res.redirect("/address");
+  } else {
+    res.redirect("/");
   }
 
-  res.redirect("/");
+
 });
 
 
@@ -96,10 +93,11 @@ app.post("/", function(req, res) {
 
 app.get("/address", function(req, res) {
 
+  var n = getN();
   res.render("address", {
     items: items,
     total: (Math.round(total * 100)) / 100,
-    num: getN()
+    num: n
   });
 
 });
