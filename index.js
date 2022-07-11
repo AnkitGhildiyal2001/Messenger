@@ -15,6 +15,8 @@ app.listen(process.env.PORT || 3000, function() { // --> app will work both on l
   console.log("Server is running on port 3000");
 });
 
+var itemsStore = [];
+
 // var itemsStore = [
 //   ["test name", "test description", 32.72],
 //   ["test name", "test description", 52.03],
@@ -26,36 +28,43 @@ app.listen(process.env.PORT || 3000, function() { // --> app will work both on l
 
 var items = [];
 
-axios
-  .post('https://anonympy.service-now.com/api/snc/alexis_pharmacy/update', {
+function getpdate(){
+  axios
+    .post('https://anonympy.service-now.com/api/snc/alexis_pharmacy/update', {
 
-  })
-  .then(res => {
-    console.log(`statusCode: ${res.status}`);
-    items = res.data.result;
-    console.log(items);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+    })
+    .then(res => {
+      console.log(`statusCode: ${res.status}`);
+      itemsStore = res.data.result;
+      for (var i = 0; i < itemsStore.length; i++) {
+        items.push(new getItem(itemsStore[i].name, itemsStore[i].description, itemsStore[i].mrp));
+      }
+      console.log(items);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 
 
 
 
 var total = 0;
-//
-// function getItem(name, description, mrp) {
-//   this.name = name;
-//   this.quantity = 0;
-//   this.description = description;
-//   this.mrp = mrp;
-// }
-//
-// for (var i = 0; i < itemsStore.length; i++) {
-//   items.push(new getItem(itemsStore[i][0], itemsStore[i][1], itemsStore[i][2]));
-// }
+
+function getItem(name, description, mrp) {
+  this.name = name;
+  this.quantity = 0;
+  this.description = description;
+  this.mrp = mrp;
+}
+
+
+  getpdate();
+
 
 app.get("/", function(req, res) {
+
   res.render('index', {
     storeItems: items,
     total: total
