@@ -35,7 +35,8 @@ function getpdate(){
     })
     .then(res => {
       console.log(`statusCode: ${res.status}`);
-      itemsStore = res.data.result;
+      itemsStore = res.data.results;
+      console.log(itemsStore);
       for (var i = 0; i < itemsStore.length; i++) {
         items.push(new getItem(itemsStore[i].name, itemsStore[i].description, Number(itemsStore[i].mrp)));
       }
